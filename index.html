@@ -1,0 +1,38 @@
+---
+layout: default
+---
+		<header class="secondary-header">
+  <h1>Egmont Books UK</h1>
+  <aside>We bring stories to life</aside>
+</header>
+<section>
+  <h2>Our wonderful books</h2>
+  <p>Egmont Publishing is the biggest children’s specialist publisher in the UK, reaching an average of one million children a month.</p>
+  <p>We publish books from beloved children’s authors and illustrators including Peter Bently, Enid Blyton, Julia Donaldson, Michael Grant, Steve Lenton, Lydia Monks, Michael Morpurgo, Andy Stanton, Jim Smith, Nick Sharratt, Lemony Snicket and Katherine Woodfine.</p>
+  <p>Egmont is also home to some of the most cherished children’s characters, including Winnie the Pooh, Thomas & Friends, Mr. Men and Little Miss and Tintin. We appeal to a wide range of readers by publishing bestselling children’s books and magazines for blockbuster brands like Star Wars, Minecraft, Lego, Disney Princess and Frozen.</p>
+  <p>Our magazines Toxic, Glitch and Go Girl are must-reads for primary age boys and girls who are passionate about the latest trends and hot brands.
+    <a href="/portfolio/">View all our books →</a>
+  </p>
+</section>
+<section>
+  <h2>Featured titles</h2>
+	<ul class="covers-container">
+    {% assign todays_date = "now" | date: "%Y%m%d" %}
+      {% for book in site.data.processed_books limit:12 %}
+        {% if book.pub_date_iso < todays_date %}
+        <li class="cover-container">
+          <a href="{{ book.title | datapage_url }}">
+            <img src="/images/covers/{{book.isbn}}.jpg" class="cover" alt="Cover of ISBN {{book.isbn}} {{book.title}}"/>
+            <p>
+              <small>{{book.pub_date | date: '%b %Y'}}</small>
+              <br/>
+              <strong>{{book.title }}</strong>
+            </p>
+          </a>
+        </li>
+        {% else %}
+      {% endif %}
+      {% endfor %}
+    </ul>
+  <a href="/portfolio/">View all our books →</a>
+</section>
